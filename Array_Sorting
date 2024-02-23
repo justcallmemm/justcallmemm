@@ -1,0 +1,177 @@
+#include <iostream>
+using namespace std;
+
+void display_Menu()
+    {
+        cout<<"Array Sorting"<<endl;
+        cout<<" "<<endl;
+        cout<<"Definition of Array Sorting"<<endl;
+
+        cout<<" "<<endl;
+        cout<<" "<<endl;
+
+        cout<<"Array sorting have differents kinds such as (1) bubble sorting, (2) selection sort, (3) quick sort, and others."<<endl;
+        cout<<"Choose from the following: "<<endl;
+
+        cout<<" "<<endl;
+
+        cout<<"[1] Bubble Sort"<<endl;
+        cout<<"[2] Selection Sort"<<endl;
+        cout<<"[3] Quick sort"<<endl;
+
+        cout<<" "<<endl;
+        cout<<" "<<endl;
+
+        cout<<"Enter you choice [1] [2] [3]: ";
+    }
+
+
+//Bubble Sort
+void bubbleSort(int arr[], int n)
+{
+    bool swapped;
+    for (int i = 0; i < n - 1; i++) {
+        swapped = false;
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr[j], arr[j + 1]);
+                swapped = true;
+            }
+        }
+        if (!swapped)
+            break; // Optimization: Stop if no swaps occurred in an iteration
+    }
+}
+
+void print_Barray(int arr[], int size)
+{
+    for (int i = 0; i < size; i++)
+        cout << arr[i] << " ";
+}
+
+void display_BubbleSort()
+{
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int N = sizeof(arr) / sizeof(arr[0]);
+    bubbleSort(arr, N);
+    cout<<" "<<endl;
+    cout<<" "<<endl;
+    cout << "Sorted array:\n"<<endl;
+    print_Barray(arr, N);
+}
+
+
+//Selection Sort
+void swap(int *a, int *b)
+    {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+    }
+
+void selectionSort(int arr[], int size)
+    {
+    for (int i = 0; i < size - 1; i++)
+        {
+        // Set the first unsorted element as the minimum
+        int min_idx = i;
+
+        // Compare with the rest of the unsorted elements
+        for (int j = i + 1; j < size; j++)
+            {
+            if (arr[j] < arr[min_idx])
+            {
+                // Update the minimum index
+                min_idx = j;
+            }
+            }
+
+        // Swap the minimum element with the first unsorted position
+        swap(&arr[i], &arr[min_idx]);
+        }
+    }
+
+// Function to print an array
+void print_SelectionArray(int arr[], int size)
+    {
+    for (int i = 0; i < size; i++)
+        {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+
+void display_SelectionSort()
+    {
+    int data[] = {64, 25, 12, 22, 11};
+    int N = sizeof(data) / sizeof(data[0]);
+
+    cout<<" "<<endl;
+    cout<<" "<<endl;
+    cout << "Original array: "<<endl;
+    print_SelectionArray(data, N);
+    cout<<" "<<endl;
+    selectionSort(data, N);
+
+    cout << "Sorted array in ascending order: "<<endl;
+    print_SelectionArray(data, N);
+    }
+
+
+//Quick Sort
+void display_QuickSort()
+    {
+        cout<<"Quick Sort"<<endl;
+    }
+
+void display_Exit()
+    {
+        cout<<"Thank you for using the program. Ciao!";
+    }
+
+int main ()
+{
+    char answer;
+    display_Menu();
+    int choice;
+    cin>>choice;
+
+    do
+    {
+        switch(choice)
+        {
+            case 1:
+                {
+                    display_BubbleSort();
+                    break;
+                }
+            case 2:
+                {
+                    display_SelectionSort();
+                    break;
+                }
+            case 3:
+                {
+                    display_QuickSort();
+                    break;
+                }
+            case 4:
+                {
+                    display_Exit();
+                    break;
+                }
+            default:
+                {
+                cout << "Invalid choice. Please select 1, 2, or 3." << endl;
+                break;
+                }
+            return 0;
+        }
+
+    cout<<" "<<endl;
+    cout<<" "<<endl;
+    cout << "Do you want to continue? (Y/N): "<<endl;
+    cin >> answer;
+    } while (answer == 'Y' || answer == 'y');
+
+}
